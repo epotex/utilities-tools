@@ -11,7 +11,6 @@ def source_dynamo_read(source, destination, masteraccount, targetaccount):
     response = table.scan()
     for item in response[u'Items']:
         target_daynamo_put(destination, targetaccount, item)
-    return response
 
 
 def target_daynamo_put(destination, targetaccount, item):
