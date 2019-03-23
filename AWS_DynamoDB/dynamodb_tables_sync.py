@@ -1,12 +1,12 @@
 """Sync dynamoDB tables within the same AWS account or across accounts"""
-import boto3
 import argparse
+import boto3
 
 
 def source_dynamo_read(source, destination, masteraccount, targetaccount):
     """Read from the source table"""
-    AWS_SESSION = boto3.Session(profile_name=masteraccount)
-    dynamodb = AWS_SESSION.resource('dynamodb')
+    aws_session = boto3.Session(profile_name=masteraccount)
+    dynamodb = aws_session.resource('dynamodb')
     table = dynamodb.Table(source)
     response = table.scan()
     for item in response[u'Items']:
@@ -15,8 +15,8 @@ def source_dynamo_read(source, destination, masteraccount, targetaccount):
 
 def target_daynamo_put(destination, targetaccount, item):
     """Insert items into the destination table"""
-    AWS_SESSION = boto3.Session(profile_name=targetaccount)
-    dynamodb = AWS_SESSION.resource('dynamodb').Table(destination)
+    aws_session = boto3.Session(profile_name=targetaccount)
+    dynamodb = aws_session.resource('dynamodb').Table(destination)
     dynamodb.put_item(TableName=destination, Item=item)
 
 
