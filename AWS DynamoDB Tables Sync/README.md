@@ -1,0 +1,1 @@
+# Sync two tables across accounts or regions

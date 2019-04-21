@@ -1,0 +1,1 @@
+# Template for service assets from a reverse proxy over SSL
