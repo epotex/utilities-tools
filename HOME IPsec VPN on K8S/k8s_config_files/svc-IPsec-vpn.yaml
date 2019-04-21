@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: home-vpn
+spec:
+  ports:
+  - name: vpn-1
+    port: 500
+    protocol: UDP
+    targetPort: 500
+  - name: vpn-2
+    port: 4500
+    protocol: UDP
+    targetPort: 4500
+  selector:
+    app: home-vpn
+  type: LoadBalancer

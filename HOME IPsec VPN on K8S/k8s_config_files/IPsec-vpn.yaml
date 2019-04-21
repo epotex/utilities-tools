@@ -1,0 +1,49 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: home-vpn
+spec:
+  selector:
+    matchLabels:
+      app: home-vpn
+  template:
+    metadata:
+      labels:
+        app: home-vpn
+    spec:
+      volumes:
+        - name: vpn-modules
+          hostPath:
+            path: /lib/modules
+            type: Directory
+      containers:
+        - name:  home-vpn
+          env:
+            - name: VPN_IPSEC_PSK
+              valueFrom:
+                secretKeyRef:
+                  name: vpnvar
+                  key: VPN_IPSEC_PSK
+            - name: VPN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: vpnvar
+                  key: VPN_USER
+            - name: VPN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: vpnvar
+                  key: VPN_PASSWORD
+          image: hwdsl2/ipsec-vpn-server
+          imagePullPolicy: Always
+          ports:
+            - name: vpn-1
+              containerPort: 500
+            - name: vpn-2
+              containerPort: 4500
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: vpn-modules
+              mountPath: /lib/modules:ro
+
