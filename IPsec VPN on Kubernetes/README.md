@@ -15,9 +15,9 @@ I'm using the Odroid N2's to form a K8S cluster (bare metal) for home usage and 
 
 1. Edit k8s_config_files/create_vpn_secret.yaml with
  your secret username/password/preshared key
-2. Deploy the secret: "kubectl apply -f k8s_config_files/create_vpn_secret.yaml"
-3. Deploy the service: "kubectl apply -f IPsec-vpn.yaml"
-4. Deploy the MetalLb service: "kubectl -f svc-IPsec-vpn.yaml"
+2. Deploy the secret: "kubectl apply -f k8s_config_files/IPsec-VPN-Secret.yaml"
+3. Deploy the service: "kubectl apply -f IPsec-VPN-Deployment.yaml"
+4. Deploy the MetalLb service: "kubectl -f IPsec-VPN-Service.yaml"
 
 ## Get the service information:
  1.  kubectl get service -o wide  
