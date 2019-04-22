@@ -5,11 +5,11 @@ Run IPsec vpn on top of Kubernetes!
 Credits: 
 
 - The Docker images in this deployment was created by: hwdsl2, check his github repo: https://github.com/hwdsl2/docker-ipsec-vpn-server
-
 - The service is exposed thanks to MetalLb, read more about it here: https://metallb.universe.tf/
-to create your own vpn server
 
-I'm using the Odroid N2's to form a K8S cluster (bare metal) for home usage and a lab
+YOu can build the image and host it in your own docker registry
+
+I'm using the Odroid N2's to form a K8S cluster (bare metal) for home usage and a lab, and the MetalLb is really cool solution for the LB.
 
 ##Deployment :
 
